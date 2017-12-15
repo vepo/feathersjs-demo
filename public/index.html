@@ -1,0 +1,67 @@
+<html>
+  
+  <head>
+    <title>Feathers.js - Notificações</title>
+    <style>
+      body {
+        font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+        font-weight: 400;
+        font-size: 16px;
+        color: #333;
+      }
+    </style>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="//unpkg.com/feathers-client@^2.0.0-pre.1/dist/feathers.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const client = feathers()
+        .configure(feathers.hooks())
+        .configure(feathers.socketio(socket));
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>  
+    <script src="/feathers-app.js"></script>
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Feathers.js - Notificações</span>
+    </nav>
+    <div class="container" style="padding-top: 15px;">
+      <div class="jumbotron">
+        <form onsubmit="criarNotificacao(this); return false;">
+          <div class="row">
+            <div class="form-group col-md-12 mb-3">
+              <label for="titulo">Titulo</label>
+              <input type="text" class="form-control" id="titulo" placeholder="Insira um Titulo">
+            </div>
+            <div class="form-group col-md-12 mb-3">
+              <label for="descricao">Descrição</label>
+              <textarea class="form-control" rows="5" id="descricao" placeholder="Insira uma descrição"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Criar</button>
+        </form>
+      </div>
+      <table class="table notificacoes">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">ID</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Deescrição</th>
+              <th scope="col">Data de Criação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="vazio">Nenhuma notificação encontrada!</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </body>
+</html>
